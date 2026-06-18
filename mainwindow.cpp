@@ -14,91 +14,275 @@ MainWindow::~MainWindow()
 }
 
 
-
+//Could do negative numbers
 
 
 
 void MainWindow::on_pushButton_answer_clicked()
 {
+    if (expression.isEmpty())
+        return;
+    QVector<double> numbers;
+    QVector<QString> operators;
+    for(const Token& token : expression){
+        //Expression is Operator
+        if(token.type == TokenType::Operator){
+            operators.push_back(token.value);
+        }
+        else if (token.type == TokenType::Number){
+            numbers.push_back(token.value.toDouble());
+        }
 
+
+    }
+    QVector<int> parenthesis;
+    QVector<int> exponents;
+
+    double answer;
+
+    bool multLoop = true;
+    while (multLoop){
+        multLoop = false;
+        for(int i = 0; i < expression.size(); i++){
+            if(expression[i].value == "×" || expression[i].value == "/")
+            {
+
+                multLoop = true;
+                int location = i;
+                int oneBehind = location - 1;
+                int oneInfront = location + 1;
+                if(expression[location].value == "×"){
+                    answer = expression[oneBehind].value.toDouble() * expression[oneInfront].value.toDouble();
+                }
+                if(expression[location].value == "/"){
+                    answer = expression[oneBehind].value.toDouble() / expression[oneInfront].value.toDouble();
+                }
+                expression[oneBehind].value = QString::number(answer);
+                expression.removeAt(i);
+                expression.removeAt(i);
+
+                break;
+            }
+
+        }
+    }
+    bool addLoop = true;
+    while (addLoop){
+        addLoop = false;
+        for(int i = 0; i < expression.size(); i++){
+            if(expression[i].value == "+" || expression[i].value == "-")
+            {
+                addLoop = true;
+                int location = i;
+                int oneBehind = location - 1;
+                int oneInfront = location + 1;
+                if(expression[location].value == "+"){
+                    answer = expression[oneBehind].value.toDouble() + expression[oneInfront].value.toDouble();
+                }
+                if(expression[location].value == "-"){
+                    answer = expression[oneBehind].value.toDouble() - expression[oneInfront].value.toDouble();
+                }
+                expression[oneBehind].value = QString::number(answer);
+                expression.removeAt(i);
+                expression.removeAt(i);
+
+                break;
+            }
+        }
+    }
+
+    if (!expression.isEmpty()) {
+        ui->lineEdit->setText(expression[0].value);
+    }
 }
+
 
 void MainWindow::on_pushButton_num0_clicked()
 {
-    expression.push_back({TokenType::Number, "0"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "0");
+    QString digit = "0";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num1_clicked()
 {
-    //ui->setupUi(this);
-    //conne
-    expression.push_back({TokenType::Number, "1"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "1");
+    QString digit = "1";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
+
 
 void MainWindow::on_pushButton_num2_clicked()
 {
-    expression.push_back({TokenType::Number, "2"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "2");
+    QString digit = "2";
 
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num3_clicked()
 {
-    expression.push_back({TokenType::Number, "3"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "3");
+    QString digit = "3";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num4_clicked()
 {
-    expression.push_back({TokenType::Number, "4"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "4");
+    QString digit = "4";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num5_clicked()
 {
-    expression.push_back({TokenType::Number, "5"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "5");
+    QString digit = "5";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num6_clicked()
 {
-    expression.push_back({TokenType::Number, "6"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "6");
+    QString digit = "6";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num7_clicked()
 {
-    expression.push_back({TokenType::Number, "7"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "7");
+    QString digit = "7";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num8_clicked()
 {
-    expression.push_back({TokenType::Number, "8"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "8");
+    QString digit = "8";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
 
 
 void MainWindow::on_pushButton_num9_clicked()
 {
-    expression.push_back({TokenType::Number, "9"});
-    ui->lineEdit->setText(ui->lineEdit->text() + "9");
+    QString digit = "9";
+
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator) {
+        Token newToken;
+        newToken.type = TokenType::Number;
+        newToken.value = digit;
+        expression.push_back(newToken);
+    }
+    else {
+        expression.back().value += digit;
+    }
+
+    ui->lineEdit->setText(ui->lineEdit->text() + digit);
 }
-
-
 
 
 void MainWindow::on_pushButton_multiplaction_clicked()
 {
+    if (expression.isEmpty())
+        return;
+    if (expression.back().type == TokenType::Operator)
+        return;
     expression.push_back({TokenType::Operator, "×"});
     ui->lineEdit->setText(ui->lineEdit->text() + "×");
 }
@@ -106,6 +290,10 @@ void MainWindow::on_pushButton_multiplaction_clicked()
 
 void MainWindow::on_pushButton_addition_clicked()
 {
+    if (expression.isEmpty())
+        return;
+    if (expression.back().type == TokenType::Operator)
+        return;
     expression.push_back({TokenType::Operator, "+"});
     ui->lineEdit->setText(ui->lineEdit->text() + "+");
 }
@@ -113,6 +301,10 @@ void MainWindow::on_pushButton_addition_clicked()
 
 void MainWindow::on_pushButton_subtraction_clicked()
 {
+    if (expression.isEmpty())
+        return;
+    if (expression.back().type == TokenType::Operator)
+        return;
     expression.push_back({TokenType::Operator, "-"});
     ui->lineEdit->setText(ui->lineEdit->text() + "-");
 }
@@ -120,6 +312,10 @@ void MainWindow::on_pushButton_subtraction_clicked()
 
 void MainWindow::on_pushButton_division_clicked()
 {
+    if (expression.isEmpty())
+        return;
+    if (expression.back().type == TokenType::Operator)
+        return;
     expression.push_back({TokenType::Operator, "/"});
     ui->lineEdit->setText(ui->lineEdit->text() + "/");
 }
