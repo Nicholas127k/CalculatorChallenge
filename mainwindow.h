@@ -66,8 +66,6 @@ private slots:
 
     void on_pushButton_sqr_2_clicked();
 
-    void on_pushButton_paranthesis_clicked();
-
     void on_pushButton_percent_clicked();
 
     void on_pushButton_clear_clicked();
@@ -76,8 +74,17 @@ private slots:
 
     void on_pushButton_decimal_clicked();
 
+    void on_pushButton_plus_minus_clicked();
+
+    void on_pushButton_parenthesis_clicked();
+
+    void on_pushButton_clear_clear_clicked();
+
+    double evaluateExpression(QVector<Token> tokens);
+
 private:
     QVector<Token> expression;
+
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H

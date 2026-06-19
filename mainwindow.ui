@@ -6,18 +6,24 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>600</width>
+    <height>605</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>200</x>
       <y>20</y>
       <width>121</width>
       <height>31</height>
@@ -30,11 +36,20 @@
    <widget class="QPushButton" name="pushButton_num7">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>150</y>
+      <x>200</x>
+      <y>230</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>7</string>
@@ -43,11 +58,20 @@
    <widget class="QPushButton" name="pushButton_num8">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>150</y>
+      <x>250</x>
+      <y>230</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>8</string>
@@ -56,11 +80,20 @@
    <widget class="QPushButton" name="pushButton_num9">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>150</y>
+      <x>300</x>
+      <y>230</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>9</string>
@@ -69,11 +102,246 @@
    <widget class="QPushButton" name="pushButton_num4">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>200</y>
+      <x>200</x>
+      <y>280</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="ButtonText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Highlight">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>39</red>
+          <green>191</green>
+          <blue>115</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="PlaceholderText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="128">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="ButtonText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Highlight">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>39</red>
+          <green>191</green>
+          <blue>115</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="PlaceholderText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="128">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="WindowText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Text">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="ButtonText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>170</green>
+          <blue>0</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Highlight">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>39</red>
+          <green>191</green>
+          <blue>115</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="PlaceholderText">
+        <brush brushstyle="SolidPattern">
+         <color alpha="128">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>4</string>
@@ -82,11 +350,20 @@
    <widget class="QPushButton" name="pushButton_num5">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>200</y>
+      <x>250</x>
+      <y>280</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>5</string>
@@ -95,11 +372,20 @@
    <widget class="QPushButton" name="pushButton_num6">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>200</y>
+      <x>300</x>
+      <y>280</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>6</string>
@@ -108,11 +394,20 @@
    <widget class="QPushButton" name="pushButton_num1">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>250</y>
+      <x>200</x>
+      <y>330</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>1</string>
@@ -121,11 +416,20 @@
    <widget class="QPushButton" name="pushButton_num2">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>250</y>
+      <x>250</x>
+      <y>330</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>2</string>
@@ -134,11 +438,20 @@
    <widget class="QPushButton" name="pushButton_num3">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>250</y>
+      <x>300</x>
+      <y>330</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>3</string>
@@ -147,11 +460,17 @@
    <widget class="QPushButton" name="pushButton_num0">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>300</y>
-      <width>41</width>
+      <x>200</x>
+      <y>380</y>
+      <width>91</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>0</string>
@@ -160,11 +479,17 @@
    <widget class="QPushButton" name="pushButton_On">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>350</y>
+      <x>200</x>
+      <y>430</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>On</string>
@@ -173,11 +498,17 @@
    <widget class="QPushButton" name="pushButton_decimal">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>300</y>
+      <x>300</x>
+      <y>380</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 170, 0);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>.</string>
@@ -186,11 +517,17 @@
    <widget class="QPushButton" name="pushButton_sqr">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>150</y>
+      <x>200</x>
+      <y>180</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>√</string>
@@ -199,11 +536,17 @@
    <widget class="QPushButton" name="pushButton_division">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>200</y>
+      <x>350</x>
+      <y>230</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(172, 172, 172);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>÷</string>
@@ -212,11 +555,17 @@
    <widget class="QPushButton" name="pushButton_subtraction">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>250</y>
+      <x>350</x>
+      <y>280</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(172, 172, 172);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>-</string>
@@ -225,11 +574,17 @@
    <widget class="QPushButton" name="pushButton_addition">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>300</y>
+      <x>350</x>
+      <y>330</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(172, 172, 172);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>+</string>
@@ -238,11 +593,24 @@
    <widget class="QPushButton" name="pushButton_answer">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>350</y>
+      <x>250</x>
+      <y>430</y>
       <width>141</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(245, 245, 50);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>Answer</string>
@@ -251,11 +619,17 @@
    <widget class="QPushButton" name="pushButton_multiplaction">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>300</y>
+      <x>350</x>
+      <y>380</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(172, 172, 172);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>×</string>
@@ -264,8 +638,8 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>192</x>
-      <y>55</y>
+      <x>202</x>
+      <y>85</y>
       <width>191</width>
       <height>41</height>
      </rect>
@@ -274,24 +648,36 @@
    <widget class="QPushButton" name="pushButton_sqr_2">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>100</y>
+      <x>200</x>
+      <y>130</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>x²</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_paranthesis">
+   <widget class="QPushButton" name="pushButton_parenthesis">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>100</y>
+      <x>250</x>
+      <y>130</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>( )</string>
@@ -300,11 +686,17 @@
    <widget class="QPushButton" name="pushButton_clear">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>100</y>
+      <x>350</x>
+      <y>180</y>
       <width>41</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
     </property>
     <property name="text">
      <string>C</string>
@@ -313,14 +705,87 @@
    <widget class="QPushButton" name="pushButton_percent">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>100</y>
+      <x>300</x>
+      <y>130</y>
       <width>41</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
+    </property>
     <property name="text">
      <string>%</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_clear_clear">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>130</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(229, 51, 15);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
+    </property>
+    <property name="text">
+     <string>CC</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>50</y>
+      <width>113</width>
+      <height>26</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_plus_minus">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>180</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
+    </property>
+    <property name="text">
+     <string>+/-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_clear_2">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>180</y>
+      <width>41</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(150, 245, 127);
+color: white; 
+border: 1px solid #c0c0c0;
+border-radius: 6px;</string>
+    </property>
+    <property name="text">
+     <string>C</string>
     </property>
    </widget>
   </widget>
@@ -329,8 +794,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>22</height>
+     <width>600</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
