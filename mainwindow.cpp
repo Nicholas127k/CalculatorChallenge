@@ -1,11 +1,19 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "favoritedcalculation.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->sidebarMenu->hide();
+    //ui->frame_background->setFixedSize(250, 400);
+    //this->layout()->setSizeConstraint(QLayout::SetFixedSize);
+    flashTimer = new QTimer(this);
+    colorIndex = 0;
+
+    connect(flashTimer, &QTimer::timeout,
+            this, &MainWindow::flashColors);
 }
 
 MainWindow::~MainWindow()
@@ -32,22 +40,31 @@ void MainWindow::on_pushButton_answer_clicked()
                 int backIndex = i;
                 QVector<Token> input = tokens.mid(frontIndex + 1, backIndex - frontIndex - 1);
                 double answer = evaluateExpression(input);
+
+                int funcIndex = frontIndex - 1;
+                bool hasFunction = (funcIndex >= 0 && tokens[funcIndex].type == TokenType::Function);
+
+                if (hasFunction) {
+                    QString funcName = tokens[funcIndex].value;
+                    if (funcName == "log") {
+                        answer = log10(answer);
+                    }
+                }
+
                 Token resultToken;
                 resultToken.type = TokenType::Number;
                 resultToken.value = QString::number(answer);
 
-                tokens.remove(frontIndex, backIndex - frontIndex + 1);
-                tokens.insert(frontIndex, resultToken);
+                int removeStart = hasFunction ? funcIndex : frontIndex;
+                int removeCount = hasFunction ? (backIndex - funcIndex + 1) : (backIndex - frontIndex + 1);
 
+                tokens.remove(removeStart, removeCount);
+                tokens.insert(removeStart, resultToken);
                 parenthesisLoop = true;
                 break;
             }
         }
     }
-    QVector<int> parenthesis;
-    QVector<int> exponents;
-
-
 
     double answer = evaluateExpression(tokens);
     QString answerStr = QString::number(answer);
@@ -425,6 +442,21 @@ void MainWindow::on_pushButton_percent_clicked()
 {
     //First check if operators or unalloaded variables then do the percent
     //After next button is pressed clear value and place
+    if(expression.empty()){
+        return;
+    }
+    Token token = expression[0];
+    if(expression.size() == 1 && token.type == TokenType::Number){
+
+        double value = expression[0].value.toDouble();
+
+        value *= 100.0;
+
+        expression[0].value = QString::number(value);
+
+        ui->lineEdit->setText(expression[0].value);
+    }
+
 
 }
 
@@ -563,9 +595,142 @@ void MainWindow::on_pushButton_parenthesis_clicked()
             ui->lineEdit->setText(ui->lineEdit->text() + newToken.value);
         }
     }
+}
+
+void MainWindow::on_pushButton_log_clicked()
+{
+    if (!expression.isEmpty() && (expression.back().type == TokenType::Number || expression.back().type == TokenType::RightParen)){
+        expression.push_back({TokenType::Operator, "×"});
+        ui->lineEdit->setText(ui->lineEdit->text() + "×");
+    }
+
+    Token token;
+    token.type = TokenType::Function;
+    token.value = "log";
+    expression.push_back(token);
+
+    Token newToken;
+    newToken.type = TokenType::LeftParen;
+    newToken.value = "(";
+    expression.push_back(newToken);
+    ui->lineEdit->setText(ui->lineEdit->text() + "log(");
+}
+
+
+void MainWindow::on_pushButton_On_clicked()
+{
+    if(flashTimer->isActive())
+    {
+        flashTimer->stop();
+
+
+        this->setStyleSheet("");
+    }
+    else
+    {
+        flashTimer->start(700);
+    }
+
+
+}
+
+void MainWindow::flashColors()
+{
+    QString colors[] =
+        {
+            "#fdb0aa", // red
+            "#fdd4aa", // orange
+            "#fdf7aa", // yellow
+            "#bcfdaa", // green
+            "#aab0fd", // blue
+            "#aafddf", // cyan
+            "#aab0fd", // magenta
+            "#c8aafd",
+            "#ffffff"  // white
+        };
+
+    QString color = colors[colorIndex];
+
+    QString style =
+        QString("background-color: %1;"
+               ).arg(color);
+
+    // Display
+    //ui->frame_background->setStyleSheet(style);
+
+        /*
+
+    // All buttons
+    QList<QPushButton*> buttons =
+        findChildren<QPushButton*>();
+
+    for (QPushButton *button : numberButtons)
+    {
+        button->setStyleSheet(QString("color: white"
+                                      "background-color: %1;"
+                                      ).arg(color));
+    }
+
+    for (QPushButton *button : operatorButtons)
+    {
+        button->setStyleSheet(QString("color: white;"
+                              "background-color: %1;"
+                                      ).arg(color));
+    }
+
+    for (QPushButton *button : functionButtons)
+    {
+        button->setStyleSheet(QString("color:%1;"
+                              "background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #1e3c72, stop:1 #2a5298);"
+                              "border: 1px solid #c0c0c0;"
+                              ).arg(color));
+    }
+    */
+    colorIndex++;
+    if(colorIndex >= 8)
+        colorIndex = 0;
+}
+
+
+void MainWindow::on_pushButton_menu_clicked()
+{
+   ui->sidebarMenu->setVisible(!ui->sidebarMenu->isVisible());
 
 }
 
 
 
+
+
+void MainWindow::on_pushButton_recent_clicked()
+{
+
+}
+
+
+void MainWindow::on_pushButton_favorite_clicked()
+{
+    favoritedcalculation *recentWindow = new favoritedcalculation(this);
+    recentWindow->setFixedSize(290, 631);
+    recentWindow->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
+    recentWindow->move(this->x(), this->y());
+    recentWindow->show();
+}
+
+
+void MainWindow::on_pushButton_menu_2_clicked()
+{
+    if(ui->sidebarMenu->isVisible()){
+        ui->sidebarMenu->setVisible(!ui->sidebarMenu->isVisible());
+    }
+    else{
+        ui->sidebarMenu->setVisible(ui->sidebarMenu->isVisible());
+    }
+}
+
+
+void MainWindow::on_pushButton_calculator_clicked()
+{
+    ui->sidebarMenu->setVisible(!ui->sidebarMenu->isVisible());
+}
 

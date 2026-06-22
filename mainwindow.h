@@ -2,12 +2,17 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
+#include <QList>
+#include <QPushButton>
+
 
 enum class TokenType{
     Number,
     Operator,
     LeftParen,
-    RightParen
+    RightParen,
+    Function
 };
 
 struct Token
@@ -82,9 +87,32 @@ private slots:
 
     double evaluateExpression(QVector<Token> tokens);
 
+    void on_pushButton_log_clicked();
+
+    void on_pushButton_On_clicked();
+
+    void flashColors();
+
+    void on_pushButton_menu_clicked();
+
+    void on_pushButton_recent_clicked();
+
+    void on_pushButton_favorite_clicked();
+
+    void on_pushButton_menu_2_clicked();
+
+    void on_pushButton_calculator_clicked();
+
 private:
     QVector<Token> expression;
 
     Ui::MainWindow *ui;
+    QTimer *flashTimer;
+    int colorIndex;
+    QList<QPushButton*> numberButtons;
+    QList<QPushButton*> operatorButtons;
+    QList<QPushButton*> functionButtons;
+
+
 };
 #endif // MAINWINDOW_H

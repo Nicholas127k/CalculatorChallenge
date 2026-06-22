@@ -67,7 +67,15 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_pushButton_clear_clear_clicked",
         "evaluateExpression",
         "QList<Token>",
-        "tokens"
+        "tokens",
+        "on_pushButton_log_clicked",
+        "on_pushButton_On_clicked",
+        "flashColors",
+        "on_pushButton_menu_clicked",
+        "on_pushButton_recent_clicked",
+        "on_pushButton_favorite_clicked",
+        "on_pushButton_menu_2_clicked",
+        "on_pushButton_calculator_clicked"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -123,6 +131,22 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<double(QVector<Token>)>(26, 2, QMC::AccessPrivate, QMetaType::Double, {{
             { 0x80000000 | 27, 28 },
         }}),
+        // Slot 'on_pushButton_log_clicked'
+        QtMocHelpers::SlotData<void()>(29, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_On_clicked'
+        QtMocHelpers::SlotData<void()>(30, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'flashColors'
+        QtMocHelpers::SlotData<void()>(31, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_menu_clicked'
+        QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_recent_clicked'
+        QtMocHelpers::SlotData<void()>(33, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_favorite_clicked'
+        QtMocHelpers::SlotData<void()>(34, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_menu_2_clicked'
+        QtMocHelpers::SlotData<void()>(35, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_calculator_clicked'
+        QtMocHelpers::SlotData<void()>(36, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -173,6 +197,14 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 23: _t->on_pushButton_clear_clear_clicked(); break;
         case 24: { double _r = _t->evaluateExpression((*reinterpret_cast<std::add_pointer_t<QList<Token>>>(_a[1])));
             if (_a[0]) *reinterpret_cast<double*>(_a[0]) = std::move(_r); }  break;
+        case 25: _t->on_pushButton_log_clicked(); break;
+        case 26: _t->on_pushButton_On_clicked(); break;
+        case 27: _t->flashColors(); break;
+        case 28: _t->on_pushButton_menu_clicked(); break;
+        case 29: _t->on_pushButton_recent_clicked(); break;
+        case 30: _t->on_pushButton_favorite_clicked(); break;
+        case 31: _t->on_pushButton_menu_2_clicked(); break;
+        case 32: _t->on_pushButton_calculator_clicked(); break;
         default: ;
         }
     }
@@ -197,14 +229,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 25)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 25;
+        _id -= 33;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 25)
+        if (_id < 33)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 25;
+        _id -= 33;
     }
     return _id;
 }
