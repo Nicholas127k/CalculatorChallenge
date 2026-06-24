@@ -379,12 +379,6 @@ void MainWindow::on_pushButton_sqr_clicked()
 
         ui->lineEdit->setText(QString::number(value));
     }
-    else{
-        expression.clear();
-        ui->lineEdit->setText("Invalid Chr");
-
-
-    }
 
 }
 
@@ -406,11 +400,6 @@ void MainWindow::on_pushButton_power_2_clicked()
         expression.clear();
         expression.push_back({TokenType::Number, QString::number(value)});
         ui->lineEdit->setText(QString::number(value));
-
-    }
-    else{
-        expression.clear();
-        ui->lineEdit->setText("Invalid Chr");
 
     }
 }
