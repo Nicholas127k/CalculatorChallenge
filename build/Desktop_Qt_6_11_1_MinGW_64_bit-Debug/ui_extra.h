@@ -50,13 +50,13 @@ public:
     {
         if (extra->objectName().isEmpty())
             extra->setObjectName("extra");
-        extra->resize(921, 651);
+        extra->resize(291, 634);
         QFont font;
         font.setPointSize(10);
         extra->setFont(font);
         frame_extra = new QFrame(extra);
         frame_extra->setObjectName("frame_extra");
-        frame_extra->setGeometry(QRect(0, 0, 290, 631));
+        frame_extra->setGeometry(QRect(0, 0, 291, 631));
         frame_extra->setStyleSheet(QString::fromUtf8("color: white;\n"
 ""));
         frame_extra->setFrameShape(QFrame::Shape::StyledPanel);
@@ -78,7 +78,7 @@ public:
         pushButton_sideBarOpen->setCheckable(true);
         horizontalLayoutWidget_2 = new QWidget(frame_extra);
         horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
-        horizontalLayoutWidget_2->setGeometry(QRect(0, 110, 295, 71));
+        horizontalLayoutWidget_2->setGeometry(QRect(0, 110, 291, 71));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -87,7 +87,7 @@ public:
         sizePolicy.setHeightForWidth(pushButton_pi->sizePolicy().hasHeightForWidth());
         pushButton_pi->setSizePolicy(sizePolicy);
         pushButton_pi->setMaximumSize(QSize(10001000, 1000));
-        pushButton_pi->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_pi->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "color: black; \n"
 ""));
 
@@ -98,7 +98,7 @@ public:
         sizePolicy.setHeightForWidth(pushButton_e->sizePolicy().hasHeightForWidth());
         pushButton_e->setSizePolicy(sizePolicy);
         pushButton_e->setMaximumSize(QSize(10001000, 1000));
-        pushButton_e->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_e->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "color: black; \n"
 ""));
 
@@ -109,7 +109,7 @@ public:
         sizePolicy.setHeightForWidth(pushButton_speedoflight->sizePolicy().hasHeightForWidth());
         pushButton_speedoflight->setSizePolicy(sizePolicy);
         pushButton_speedoflight->setMaximumSize(QSize(10001000, 1000));
-        pushButton_speedoflight->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_speedoflight->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "color: black; \n"
 ""));
 
@@ -117,13 +117,21 @@ public:
 
         label = new QLabel(frame_extra);
         label->setObjectName("label");
-        label->setGeometry(QRect(0, 70, 111, 41));
+        label->setGeometry(QRect(0, 70, 291, 41));
         label->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
-"color: black;\n"
+"\n"
+"    color: #2c3e50;\n"
+"    font-family: \"Segoe UI\", Arial, sans-serif;\n"
+"    font-size: 14pt;\n"
+"    font-weight: bold;\n"
+"    letter-spacing: 1px;\n"
+"    padding-bottom: 4px;\n"
+"\n"
 ""));
+        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
         pushButton_change_color = new QPushButton(frame_extra);
         pushButton_change_color->setObjectName("pushButton_change_color");
-        pushButton_change_color->setGeometry(QRect(40, 550, 201, 59));
+        pushButton_change_color->setGeometry(QRect(40, 390, 201, 59));
         sizePolicy.setHeightForWidth(pushButton_change_color->sizePolicy().hasHeightForWidth());
         pushButton_change_color->setSizePolicy(sizePolicy);
         pushButton_change_color->setMaximumSize(QSize(1000, 1000));
@@ -139,9 +147,23 @@ public:
 "border-radius: 10px;"));
         label_2 = new QLabel(frame_extra);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(0, 330, 111, 41));
-        label_2->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
-"color: black;"));
+        label_2->setGeometry(QRect(0, 340, 291, 41));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Segoe UI")});
+        font2.setPointSize(14);
+        font2.setBold(true);
+        font2.setUnderline(false);
+        label_2->setFont(font2);
+        label_2->setStyleSheet(QString::fromUtf8("\n"
+"background-color: transparent;\n"
+"    color: #2c3e50;\n"
+"    font-family: \"Segoe UI\", Arial, sans-serif;\n"
+"    font-size: 14pt;\n"
+"    font-weight: bold;\n"
+"    letter-spacing: 1px;\n"
+"    padding-bottom: 4px;\n"
+""));
+        label_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
         sidebarMenu = new QFrame(frame_extra);
         sidebarMenu->setObjectName("sidebarMenu");
         sidebarMenu->setGeometry(QRect(0, 0, 191, 631));

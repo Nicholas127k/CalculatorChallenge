@@ -150,7 +150,11 @@ void extra::on_pushButton_change_color_clicked()
     QString color = colors[colorIndex];
     QString style = QString(
                         "QFrame#frame_background, QFrame#frame_recent, QFrame#frame_extra {"
-                        "    background-color: %1;"
+        "    background-color: %1;"
+        "}"
+                        "}"
+                        "QListWidget#listWidget {"
+                        "    background-color: %1 !important;"
                         "}"
                         ).arg(color);
 

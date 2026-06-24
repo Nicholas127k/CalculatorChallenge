@@ -11,8 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->sidebarMenu->hide();
-    //ui->frame_background->setFixedSize(250, 400);
-    //this->layout()->setSizeConstraint(QLayout::SetFixedSize);
+    ui->lineEdit->setPlaceholderText("Welcome!");
+
     flashTimer = new QTimer(this);
     colorIndex = 0;
 
@@ -762,11 +762,12 @@ void MainWindow::on_pushButton_calculator_clicked()
 
 void MainWindow::addToRecentSearches(QString calculation)
 {
+    /*Adds recent searchs to recent search list */
     if(!calculation.isEmpty()) {
         MainWindow::recentSearches.prepend(calculation);
         /* Keeps only the last 10*/
         if(MainWindow::recentSearches.size() > 10) {
-            MainWindow::recentSearches.removeFirst();
+            MainWindow::recentSearches.removeLast();
         }
     }
 }
@@ -881,6 +882,7 @@ Token MainWindow::getLastToken()
     }
     return expression.last();
 }
+
 
 void MainWindow::bringToFront()
 {

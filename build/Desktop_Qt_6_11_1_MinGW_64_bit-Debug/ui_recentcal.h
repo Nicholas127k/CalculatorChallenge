@@ -71,8 +71,8 @@ public:
         listWidget = new QListWidget(frame_recent);
         listWidget->setObjectName("listWidget");
         listWidget->setGeometry(QRect(0, 50, 291, 581));
-        listWidget->setStyleSheet(QString::fromUtf8("ListWidget {\n"
-"    background-color: #ffffff;\n"
+        listWidget->setStyleSheet(QString::fromUtf8("QListWidget#listWidget {\n"
+"    background-color: transparent;\n"
 "    border: none;\n"
 "    outline: none;\n"
 "    padding: 8px;\n"
@@ -92,7 +92,6 @@ public:
 "QListWidget::item:hover {\n"
 "    background-color: rgb(239, 239, 239);\n"
 "}\n"
-"\n"
 ""));
         pushButton_clearall = new QPushButton(frame_recent);
         pushButton_clearall->setObjectName("pushButton_clearall");
