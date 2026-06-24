@@ -6,6 +6,8 @@
 #include <QList>
 #include <QPushButton>
 
+#include <QStringList>
+
 
 enum class TokenType{
     Number,
@@ -27,6 +29,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -34,6 +37,17 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
+    static QStringList recentSearches;
+
+    void setExpressionFromString(QString expr);
+
+    void addTokenToExpression(Token token);
+
+    bool lastTokenIsOperator();
+
+    Token getLastToken();
+
+    void bringToFront();
 
 private slots:
 
@@ -69,11 +83,13 @@ private slots:
 
     void on_pushButton_sqr_clicked();
 
-    void on_pushButton_sqr_2_clicked();
+    void on_pushButton_power_2_clicked();
 
     void on_pushButton_percent_clicked();
 
     void on_pushButton_clear_clicked();
+
+    void on_pushButton_clear_clear_clicked();
 
     bool containsOperator();
 
@@ -82,8 +98,6 @@ private slots:
     void on_pushButton_plus_minus_clicked();
 
     void on_pushButton_parenthesis_clicked();
-
-    void on_pushButton_clear_clear_clicked();
 
     double evaluateExpression(QVector<Token> tokens);
 
@@ -97,21 +111,23 @@ private slots:
 
     void on_pushButton_recent_clicked();
 
-    void on_pushButton_favorite_clicked();
+    void on_pushButton_extra_clicked();
 
     void on_pushButton_menu_2_clicked();
 
     void on_pushButton_calculator_clicked();
 
+
 private:
     QVector<Token> expression;
-
     Ui::MainWindow *ui;
     QTimer *flashTimer;
     int colorIndex;
     QList<QPushButton*> numberButtons;
     QList<QPushButton*> operatorButtons;
     QList<QPushButton*> functionButtons;
+    void addToRecentSearches(QString calculation);
+    QString tokensToString(const QVector<Token>& tokens);
 
 
 };

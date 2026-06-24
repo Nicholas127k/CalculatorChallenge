@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>291</width>
-    <height>672</height>
+    <width>290</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -91,7 +91,8 @@
         <property name="styleSheet">
          <string notr="true">border: none;
 padding: 5px;
-font-size: 26px; /* Increase this number to make the text/icon bigger */
+font-size: 26px;
+color: black;
     font-weight: bold;</string>
         </property>
         <property name="text">
@@ -145,6 +146,9 @@ font-size: 26px; /* Increase this number to make the text/icon bigger */
       </property>
       <item>
        <widget class="QPushButton" name="pushButton_calculator">
+        <property name="styleSheet">
+         <string notr="true">color: black;</string>
+        </property>
         <property name="text">
          <string>Calculator</string>
         </property>
@@ -152,15 +156,21 @@ font-size: 26px; /* Increase this number to make the text/icon bigger */
       </item>
       <item>
        <widget class="QPushButton" name="pushButton_recent">
+        <property name="styleSheet">
+         <string notr="true">color: black;</string>
+        </property>
         <property name="text">
          <string>Recent</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_favorite">
+       <widget class="QPushButton" name="pushButton_extra">
+        <property name="styleSheet">
+         <string notr="true">color: black;</string>
+        </property>
         <property name="text">
-         <string>Favorite</string>
+         <string>Extra</string>
         </property>
        </widget>
       </item>
@@ -420,7 +430,7 @@ color: black;
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(223, 223, 223);
+     <string notr="true">background-color: #3498db;
 color: black; </string>
     </property>
     <property name="text">
@@ -775,7 +785,7 @@ color: black;
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(223, 223, 223);
+     <string notr="true">background-color: #3498db;
 color: black; 
 </string>
     </property>
@@ -871,7 +881,7 @@ color: black;
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(223, 223, 223);
+     <string notr="true">background-color: #3498db;
 color: black; </string>
     </property>
     <property name="text">
@@ -914,7 +924,7 @@ color: black;
       <x>80</x>
       <y>550</y>
       <width>201</width>
-      <height>63</height>
+      <height>59</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -1028,8 +1038,9 @@ color: black;
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(223, 223, 223);
+     <string notr="true">background-color: #3498db;
 color: black; 
+
 </string>
     </property>
     <property name="text">
@@ -1106,7 +1117,7 @@ QLineEdit:focus {
 }</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_sqr_2">
+   <widget class="QPushButton" name="pushButton_power_2">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -1255,6 +1266,26 @@ color: black;
      <string>3</string>
     </property>
    </widget>
+   <widget class="QFrame" name="frame_background">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>291</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+   </widget>
+   <zorder>frame_background</zorder>
    <zorder>pushButton_num3</zorder>
    <zorder>pushButton_sqr</zorder>
    <zorder>pushButton_parenthesis</zorder>
@@ -1278,7 +1309,7 @@ color: black;
    <zorder>pushButton_multiplaction</zorder>
    <zorder>pushButton_menu</zorder>
    <zorder>lineEdit</zorder>
-   <zorder>pushButton_sqr_2</zorder>
+   <zorder>pushButton_power_2</zorder>
    <zorder>pushButton_clear_clear</zorder>
    <zorder>pushButton_log</zorder>
    <zorder>pushButton_percent</zorder>
@@ -1289,7 +1320,7 @@ color: black;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>291</width>
+     <width>290</width>
      <height>26</height>
     </rect>
    </property>

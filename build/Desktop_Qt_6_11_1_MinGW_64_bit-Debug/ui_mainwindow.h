@@ -39,7 +39,7 @@ public:
     QVBoxLayout *verticalLayout_3;
     QPushButton *pushButton_calculator;
     QPushButton *pushButton_recent;
-    QPushButton *pushButton_favorite;
+    QPushButton *pushButton_extra;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton_sqr;
     QPushButton *pushButton_parenthesis;
@@ -63,11 +63,12 @@ public:
     QPushButton *pushButton_multiplaction;
     QPushButton *pushButton_menu;
     QLineEdit *lineEdit;
-    QPushButton *pushButton_sqr_2;
+    QPushButton *pushButton_power_2;
     QPushButton *pushButton_clear_clear;
     QPushButton *pushButton_log;
     QPushButton *pushButton_percent;
     QPushButton *pushButton_num3;
+    QFrame *frame_background;
     QMenuBar *menubar;
     QMenu *menuNicks_Calculator;
     QStatusBar *statusbar;
@@ -76,7 +77,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(291, 672);
+        MainWindow->resize(290, 688);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -113,7 +114,8 @@ public:
         pushButton_menu_2->setMaximumSize(QSize(195, 75));
         pushButton_menu_2->setStyleSheet(QString::fromUtf8("border: none;\n"
 "padding: 5px;\n"
-"font-size: 26px; /* Increase this number to make the text/icon bigger */\n"
+"font-size: 26px;\n"
+"color: black;\n"
 "    font-weight: bold;"));
         pushButton_menu_2->setCheckable(true);
 
@@ -139,18 +141,21 @@ public:
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         pushButton_calculator = new QPushButton(verticalLayoutWidget);
         pushButton_calculator->setObjectName("pushButton_calculator");
+        pushButton_calculator->setStyleSheet(QString::fromUtf8("color: black;"));
 
         verticalLayout_3->addWidget(pushButton_calculator);
 
         pushButton_recent = new QPushButton(verticalLayoutWidget);
         pushButton_recent->setObjectName("pushButton_recent");
+        pushButton_recent->setStyleSheet(QString::fromUtf8("color: black;"));
 
         verticalLayout_3->addWidget(pushButton_recent);
 
-        pushButton_favorite = new QPushButton(verticalLayoutWidget);
-        pushButton_favorite->setObjectName("pushButton_favorite");
+        pushButton_extra = new QPushButton(verticalLayoutWidget);
+        pushButton_extra->setObjectName("pushButton_extra");
+        pushButton_extra->setStyleSheet(QString::fromUtf8("color: black;"));
 
-        verticalLayout_3->addWidget(pushButton_favorite);
+        verticalLayout_3->addWidget(pushButton_extra);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
@@ -224,7 +229,7 @@ public:
         sizePolicy.setHeightForWidth(pushButton_division->sizePolicy().hasHeightForWidth());
         pushButton_division->setSizePolicy(sizePolicy);
         pushButton_division->setMaximumSize(QSize(1000, 1000));
-        pushButton_division->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_division->setStyleSheet(QString::fromUtf8("background-color: #3498db;\n"
 "color: black; "));
         pushButton_num4 = new QPushButton(centralwidget);
         pushButton_num4->setObjectName("pushButton_num4");
@@ -303,7 +308,7 @@ public:
         sizePolicy.setHeightForWidth(pushButton_subtraction->sizePolicy().hasHeightForWidth());
         pushButton_subtraction->setSizePolicy(sizePolicy);
         pushButton_subtraction->setMaximumSize(QSize(10001000, 1000));
-        pushButton_subtraction->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_subtraction->setStyleSheet(QString::fromUtf8("background-color: #3498db;\n"
 "color: black; \n"
 ""));
         pushButton_num1 = new QPushButton(centralwidget);
@@ -335,7 +340,7 @@ public:
         sizePolicy.setHeightForWidth(pushButton_addition->sizePolicy().hasHeightForWidth());
         pushButton_addition->setSizePolicy(sizePolicy);
         pushButton_addition->setMaximumSize(QSize(1000, 1000));
-        pushButton_addition->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_addition->setStyleSheet(QString::fromUtf8("background-color: #3498db;\n"
 "color: black; "));
         pushButton_On = new QPushButton(centralwidget);
         pushButton_On->setObjectName("pushButton_On");
@@ -348,7 +353,7 @@ public:
 ""));
         pushButton_answer = new QPushButton(centralwidget);
         pushButton_answer->setObjectName("pushButton_answer");
-        pushButton_answer->setGeometry(QRect(80, 550, 201, 63));
+        pushButton_answer->setGeometry(QRect(80, 550, 201, 59));
         sizePolicy.setHeightForWidth(pushButton_answer->sizePolicy().hasHeightForWidth());
         pushButton_answer->setSizePolicy(sizePolicy);
         pushButton_answer->setMaximumSize(QSize(1000, 1000));
@@ -385,8 +390,9 @@ public:
         sizePolicy.setHeightForWidth(pushButton_multiplaction->sizePolicy().hasHeightForWidth());
         pushButton_multiplaction->setSizePolicy(sizePolicy);
         pushButton_multiplaction->setMaximumSize(QSize(1000, 1000));
-        pushButton_multiplaction->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_multiplaction->setStyleSheet(QString::fromUtf8("background-color: #3498db;\n"
 "color: black; \n"
+"\n"
 ""));
         pushButton_menu = new QPushButton(centralwidget);
         pushButton_menu->setObjectName("pushButton_menu");
@@ -417,13 +423,13 @@ public:
 "QLineEdit:focus {\n"
 "    border: 1px solid #3498db;\n"
 "}"));
-        pushButton_sqr_2 = new QPushButton(centralwidget);
-        pushButton_sqr_2->setObjectName("pushButton_sqr_2");
-        pushButton_sqr_2->setGeometry(QRect(10, 130, 62, 59));
-        sizePolicy.setHeightForWidth(pushButton_sqr_2->sizePolicy().hasHeightForWidth());
-        pushButton_sqr_2->setSizePolicy(sizePolicy);
-        pushButton_sqr_2->setMaximumSize(QSize(250, 400));
-        pushButton_sqr_2->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
+        pushButton_power_2 = new QPushButton(centralwidget);
+        pushButton_power_2->setObjectName("pushButton_power_2");
+        pushButton_power_2->setGeometry(QRect(10, 130, 62, 59));
+        sizePolicy.setHeightForWidth(pushButton_power_2->sizePolicy().hasHeightForWidth());
+        pushButton_power_2->setSizePolicy(sizePolicy);
+        pushButton_power_2->setMaximumSize(QSize(250, 400));
+        pushButton_power_2->setStyleSheet(QString::fromUtf8("background-color: rgb(223, 223, 223);\n"
 "color: black; "));
         pushButton_clear_clear = new QPushButton(centralwidget);
         pushButton_clear_clear->setObjectName("pushButton_clear_clear");
@@ -459,7 +465,14 @@ public:
         pushButton_num3->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "color: black; \n"
 ""));
+        frame_background = new QFrame(centralwidget);
+        frame_background->setObjectName("frame_background");
+        frame_background->setGeometry(QRect(0, 0, 291, 611));
+        frame_background->setStyleSheet(QString::fromUtf8("color: white;"));
+        frame_background->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_background->setFrameShadow(QFrame::Shadow::Raised);
         MainWindow->setCentralWidget(centralwidget);
+        frame_background->raise();
         pushButton_num3->raise();
         pushButton_sqr->raise();
         pushButton_parenthesis->raise();
@@ -483,14 +496,14 @@ public:
         pushButton_multiplaction->raise();
         pushButton_menu->raise();
         lineEdit->raise();
-        pushButton_sqr_2->raise();
+        pushButton_power_2->raise();
         pushButton_clear_clear->raise();
         pushButton_log->raise();
         pushButton_percent->raise();
         sidebarMenu->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 291, 26));
+        menubar->setGeometry(QRect(0, 0, 290, 26));
         menuNicks_Calculator = new QMenu(menubar);
         menuNicks_Calculator->setObjectName("menuNicks_Calculator");
         MainWindow->setMenuBar(menubar);
@@ -511,7 +524,7 @@ public:
         pushButton_menu_2->setText(QCoreApplication::translate("MainWindow", "\342\211\241      ", nullptr));
         pushButton_calculator->setText(QCoreApplication::translate("MainWindow", "Calculator", nullptr));
         pushButton_recent->setText(QCoreApplication::translate("MainWindow", "Recent", nullptr));
-        pushButton_favorite->setText(QCoreApplication::translate("MainWindow", "Favorite", nullptr));
+        pushButton_extra->setText(QCoreApplication::translate("MainWindow", "Extra", nullptr));
         pushButton_sqr->setText(QCoreApplication::translate("MainWindow", "\342\210\232", nullptr));
         pushButton_parenthesis->setText(QCoreApplication::translate("MainWindow", "( )", nullptr));
         pushButton_plus_minus->setText(QCoreApplication::translate("MainWindow", "+/-", nullptr));
@@ -533,7 +546,7 @@ public:
         pushButton_decimal->setText(QCoreApplication::translate("MainWindow", ".", nullptr));
         pushButton_multiplaction->setText(QCoreApplication::translate("MainWindow", "\303\227", nullptr));
         pushButton_menu->setText(QCoreApplication::translate("MainWindow", "\342\211\241      ", nullptr));
-        pushButton_sqr_2->setText(QCoreApplication::translate("MainWindow", "x\302\262", nullptr));
+        pushButton_power_2->setText(QCoreApplication::translate("MainWindow", "x\302\262", nullptr));
         pushButton_clear_clear->setText(QCoreApplication::translate("MainWindow", "CC", nullptr));
         pushButton_log->setText(QCoreApplication::translate("MainWindow", "log", nullptr));
         pushButton_percent->setText(QCoreApplication::translate("MainWindow", "%", nullptr));

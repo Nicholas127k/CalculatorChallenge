@@ -57,14 +57,14 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "on_pushButton_subtraction_clicked",
         "on_pushButton_division_clicked",
         "on_pushButton_sqr_clicked",
-        "on_pushButton_sqr_2_clicked",
+        "on_pushButton_power_2_clicked",
         "on_pushButton_percent_clicked",
         "on_pushButton_clear_clicked",
+        "on_pushButton_clear_clear_clicked",
         "containsOperator",
         "on_pushButton_decimal_clicked",
         "on_pushButton_plus_minus_clicked",
         "on_pushButton_parenthesis_clicked",
-        "on_pushButton_clear_clear_clicked",
         "evaluateExpression",
         "QList<Token>",
         "tokens",
@@ -73,7 +73,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "flashColors",
         "on_pushButton_menu_clicked",
         "on_pushButton_recent_clicked",
-        "on_pushButton_favorite_clicked",
+        "on_pushButton_extra_clicked",
         "on_pushButton_menu_2_clicked",
         "on_pushButton_calculator_clicked"
     };
@@ -111,21 +111,21 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_sqr_clicked'
         QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_pushButton_sqr_2_clicked'
+        // Slot 'on_pushButton_power_2_clicked'
         QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_percent_clicked'
         QtMocHelpers::SlotData<void()>(19, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_clear_clicked'
         QtMocHelpers::SlotData<void()>(20, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'containsOperator'
-        QtMocHelpers::SlotData<bool()>(21, 2, QMC::AccessPrivate, QMetaType::Bool),
-        // Slot 'on_pushButton_decimal_clicked'
-        QtMocHelpers::SlotData<void()>(22, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_pushButton_plus_minus_clicked'
-        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_pushButton_parenthesis_clicked'
-        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_clear_clear_clicked'
+        QtMocHelpers::SlotData<void()>(21, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'containsOperator'
+        QtMocHelpers::SlotData<bool()>(22, 2, QMC::AccessPrivate, QMetaType::Bool),
+        // Slot 'on_pushButton_decimal_clicked'
+        QtMocHelpers::SlotData<void()>(23, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_plus_minus_clicked'
+        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'on_pushButton_parenthesis_clicked'
         QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'evaluateExpression'
         QtMocHelpers::SlotData<double(QVector<Token>)>(26, 2, QMC::AccessPrivate, QMetaType::Double, {{
@@ -141,7 +141,7 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(32, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_recent_clicked'
         QtMocHelpers::SlotData<void()>(33, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'on_pushButton_favorite_clicked'
+        // Slot 'on_pushButton_extra_clicked'
         QtMocHelpers::SlotData<void()>(34, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'on_pushButton_menu_2_clicked'
         QtMocHelpers::SlotData<void()>(35, 2, QMC::AccessPrivate, QMetaType::Void),
@@ -186,15 +186,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 13: _t->on_pushButton_subtraction_clicked(); break;
         case 14: _t->on_pushButton_division_clicked(); break;
         case 15: _t->on_pushButton_sqr_clicked(); break;
-        case 16: _t->on_pushButton_sqr_2_clicked(); break;
+        case 16: _t->on_pushButton_power_2_clicked(); break;
         case 17: _t->on_pushButton_percent_clicked(); break;
         case 18: _t->on_pushButton_clear_clicked(); break;
-        case 19: { bool _r = _t->containsOperator();
+        case 19: _t->on_pushButton_clear_clear_clicked(); break;
+        case 20: { bool _r = _t->containsOperator();
             if (_a[0]) *reinterpret_cast<bool*>(_a[0]) = std::move(_r); }  break;
-        case 20: _t->on_pushButton_decimal_clicked(); break;
-        case 21: _t->on_pushButton_plus_minus_clicked(); break;
-        case 22: _t->on_pushButton_parenthesis_clicked(); break;
-        case 23: _t->on_pushButton_clear_clear_clicked(); break;
+        case 21: _t->on_pushButton_decimal_clicked(); break;
+        case 22: _t->on_pushButton_plus_minus_clicked(); break;
+        case 23: _t->on_pushButton_parenthesis_clicked(); break;
         case 24: { double _r = _t->evaluateExpression((*reinterpret_cast<std::add_pointer_t<QList<Token>>>(_a[1])));
             if (_a[0]) *reinterpret_cast<double*>(_a[0]) = std::move(_r); }  break;
         case 25: _t->on_pushButton_log_clicked(); break;
@@ -202,7 +202,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 27: _t->flashColors(); break;
         case 28: _t->on_pushButton_menu_clicked(); break;
         case 29: _t->on_pushButton_recent_clicked(); break;
-        case 30: _t->on_pushButton_favorite_clicked(); break;
+        case 30: _t->on_pushButton_extra_clicked(); break;
         case 31: _t->on_pushButton_menu_2_clicked(); break;
         case 32: _t->on_pushButton_calculator_clicked(); break;
         default: ;

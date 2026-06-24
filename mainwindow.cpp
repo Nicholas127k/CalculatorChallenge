@@ -1,6 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "favoritedcalculation.h"
+#include "recentcal.h"
+#include "extra.h"
+
+QStringList MainWindow::recentSearches;
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -16,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::flashColors);
 }
 
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -24,9 +29,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_answer_clicked()
 {
-    if (expression.isEmpty())
+    if (expression.isEmpty() || (expression.back().type == TokenType::Operator))
         return;
     QVector<Token> tokens = expression;
+    QString originalExpression = tokensToString(expression);
     bool parenthesisLoop = true;
     while(parenthesisLoop){
         parenthesisLoop = false;
@@ -49,6 +55,15 @@ void MainWindow::on_pushButton_answer_clicked()
                     if (funcName == "log") {
                         answer = log10(answer);
                     }
+                    else if(funcName == "c"){
+                        answer = answer * 299792458;
+                    }
+                    else if(funcName == "e"){
+                        answer = answer * 2.71828;
+                    }
+                    else if(funcName == "π"){
+                        answer = answer * 3.1415926;
+                    }
                 }
 
                 Token resultToken;
@@ -66,8 +81,28 @@ void MainWindow::on_pushButton_answer_clicked()
         }
     }
 
+    for(int i = 0; i < tokens.size(); i++) {
+        if(tokens[i].type == TokenType::Function) {
+            if(tokens[i].value == "π") {
+                tokens[i].type = TokenType::Number;
+                tokens[i].value = "3.141592653589";
+            }
+            else if(tokens[i].value == "e") {
+                tokens[i].type = TokenType::Number;
+                tokens[i].value = "2.718281828459";
+            }
+            else if(tokens[i].value == "c") {
+                tokens[i].type = TokenType::Number;
+                tokens[i].value = "299792458";
+            }
+        }
+    }
+
     double answer = evaluateExpression(tokens);
     QString answerStr = QString::number(answer);
+
+    QString fullCalculation = originalExpression + " = " + answerStr;
+    addToRecentSearches(fullCalculation);
 
     expression.clear();
     Token resultToken;
@@ -78,62 +113,6 @@ void MainWindow::on_pushButton_answer_clicked()
     ui->lineEdit->setText(answerStr);
 }
 
-double MainWindow::evaluateExpression(QVector<Token> tokens)
-{
-    double answer;
-
-    bool multLoop = true;
-    while (multLoop){
-        multLoop = false;
-        for(int i = 0; i < tokens.size(); i++){
-            if(tokens[i].value == "×" || tokens[i].value == "/")
-            {
-
-                multLoop = true;
-                int location = i;
-                int oneBehind = location - 1;
-                int oneInfront = location + 1;
-                if(tokens[location].value == "×"){
-                    answer = tokens[oneBehind].value.toDouble() * tokens[oneInfront].value.toDouble();
-                }
-                if(tokens[location].value == "/"){
-                    answer = tokens[oneBehind].value.toDouble() / tokens[oneInfront].value.toDouble();
-                }
-                tokens[oneBehind].value = QString::number(answer);
-                tokens.removeAt(i);
-                tokens.removeAt(i);
-
-                break;
-            }
-
-        }
-    }
-    bool addLoop = true;
-    while (addLoop){
-        addLoop = false;
-        for(int i = 0; i < tokens.size(); i++){
-            if(tokens[i].value == "+" || tokens[i].value == "-")
-            {
-                addLoop = true;
-                int location = i;
-                int oneBehind = location - 1;
-                int oneInfront = location + 1;
-                if(tokens[location].value == "+"){
-                    answer = tokens[oneBehind].value.toDouble() + tokens[oneInfront].value.toDouble();
-                }
-                if(tokens[location].value == "-"){
-                    answer = tokens[oneBehind].value.toDouble() - tokens[oneInfront].value.toDouble();
-                }
-                tokens[oneBehind].value = QString::number(answer);
-                tokens.removeAt(i);
-                tokens.removeAt(i);
-
-                break;
-            }
-        }
-    }
-    return tokens.isEmpty() ? 0.0 : tokens[0].value.toDouble();
-}
 
 void MainWindow::on_pushButton_num0_clicked()
 {
@@ -380,7 +359,6 @@ void MainWindow::on_pushButton_division_clicked()
 
 void MainWindow::on_pushButton_sqr_clicked()
 {
-    // For square root use
     if(containsOperator() == false){
         if (expression.isEmpty())
             return;
@@ -394,12 +372,10 @@ void MainWindow::on_pushButton_sqr_clicked()
 
         double value = numberString.toDouble();
 
-        //value = value * value;
         value = std::sqrt(value);
 
         expression.clear();
-        expression.push_back({TokenType::Number,
-                              QString::number(value)});
+        expression.push_back({TokenType::Number, QString::number(value)});
 
         ui->lineEdit->setText(QString::number(value));
     }
@@ -412,7 +388,8 @@ void MainWindow::on_pushButton_sqr_clicked()
 
 }
 
-void MainWindow::on_pushButton_sqr_2_clicked()
+
+void MainWindow::on_pushButton_power_2_clicked()
 {
     if(containsOperator() == false){
         if (expression.isEmpty())
@@ -438,10 +415,9 @@ void MainWindow::on_pushButton_sqr_2_clicked()
     }
 }
 
+
 void MainWindow::on_pushButton_percent_clicked()
 {
-    //First check if operators or unalloaded variables then do the percent
-    //After next button is pressed clear value and place
     if(expression.empty()){
         return;
     }
@@ -450,7 +426,7 @@ void MainWindow::on_pushButton_percent_clicked()
 
         double value = expression[0].value.toDouble();
 
-        value *= 100.0;
+        value /= 100.0;
 
         expression[0].value = QString::number(value);
 
@@ -460,8 +436,10 @@ void MainWindow::on_pushButton_percent_clicked()
 
 }
 
+
 void MainWindow::on_pushButton_clear_clicked()
 {
+    /* Clears last inputed variable*/
     if(expression.empty()){
         return;
     }
@@ -480,15 +458,16 @@ void MainWindow::on_pushButton_clear_clicked()
     ui->lineEdit->setText(displayText);
 }
 
+
 bool MainWindow::containsOperator(){
     for(const Token& token : expression){
         if(token.type == TokenType::Operator){
             return true;
         }
-
     }
     return false;
 }
+
 
 void MainWindow::on_pushButton_clear_clear_clicked()
 {
@@ -523,6 +502,7 @@ void MainWindow::on_pushButton_decimal_clicked()
 
 void MainWindow::on_pushButton_plus_minus_clicked()
 {
+    /* Changes the last inputed number to the inverse value */
     if (expression.isEmpty()
         || expression.back().type == TokenType::Operator
         || expression.back().type == TokenType::LeftParen)
@@ -597,6 +577,65 @@ void MainWindow::on_pushButton_parenthesis_clicked()
     }
 }
 
+
+double MainWindow::evaluateExpression(QVector<Token> tokens)
+{
+    double answer;
+
+    bool multLoop = true;
+    while (multLoop){
+        multLoop = false;
+        for(int i = 0; i < tokens.size(); i++){
+            if(tokens[i].value == "×" || tokens[i].value == "/")
+            {
+
+                multLoop = true;
+                int location = i;
+                int oneBehind = location - 1;
+                int oneInfront = location + 1;
+                if(tokens[location].value == "×"){
+                    answer = tokens[oneBehind].value.toDouble() * tokens[oneInfront].value.toDouble();
+                }
+                if(tokens[location].value == "/"){
+                    answer = tokens[oneBehind].value.toDouble() / tokens[oneInfront].value.toDouble();
+                }
+                tokens[oneBehind].value = QString::number(answer);
+                tokens.removeAt(i);
+                tokens.removeAt(i);
+
+                break;
+            }
+
+        }
+    }
+    bool addLoop = true;
+    while (addLoop){
+        addLoop = false;
+        for(int i = 0; i < tokens.size(); i++){
+            if(tokens[i].value == "+" || tokens[i].value == "-")
+            {
+                addLoop = true;
+                int location = i;
+                int oneBehind = location - 1;
+                int oneInfront = location + 1;
+                if(tokens[location].value == "+"){
+                    answer = tokens[oneBehind].value.toDouble() + tokens[oneInfront].value.toDouble();
+                }
+                if(tokens[location].value == "-"){
+                    answer = tokens[oneBehind].value.toDouble() - tokens[oneInfront].value.toDouble();
+                }
+                tokens[oneBehind].value = QString::number(answer);
+                tokens.removeAt(i);
+                tokens.removeAt(i);
+
+                break;
+            }
+        }
+    }
+    return tokens.isEmpty() ? 0.0 : tokens[0].value.toDouble();
+}
+
+
 void MainWindow::on_pushButton_log_clicked()
 {
     if (!expression.isEmpty() && (expression.back().type == TokenType::Number || expression.back().type == TokenType::RightParen)){
@@ -634,6 +673,7 @@ void MainWindow::on_pushButton_On_clicked()
 
 }
 
+
 void MainWindow::flashColors()
 {
     QString colors[] =
@@ -644,7 +684,6 @@ void MainWindow::flashColors()
             "#bcfdaa", // green
             "#aab0fd", // blue
             "#aafddf", // cyan
-            "#aab0fd", // magenta
             "#c8aafd",
             "#ffffff"  // white
         };
@@ -655,37 +694,7 @@ void MainWindow::flashColors()
         QString("background-color: %1;"
                ).arg(color);
 
-    // Display
-    //ui->frame_background->setStyleSheet(style);
-
-        /*
-
-    // All buttons
-    QList<QPushButton*> buttons =
-        findChildren<QPushButton*>();
-
-    for (QPushButton *button : numberButtons)
-    {
-        button->setStyleSheet(QString("color: white"
-                                      "background-color: %1;"
-                                      ).arg(color));
-    }
-
-    for (QPushButton *button : operatorButtons)
-    {
-        button->setStyleSheet(QString("color: white;"
-                              "background-color: %1;"
-                                      ).arg(color));
-    }
-
-    for (QPushButton *button : functionButtons)
-    {
-        button->setStyleSheet(QString("color:%1;"
-                              "background: qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #1e3c72, stop:1 #2a5298);"
-                              "border: 1px solid #c0c0c0;"
-                              ).arg(color));
-    }
-    */
+    ui->frame_background->setStyleSheet(style);
     colorIndex++;
     if(colorIndex >= 8)
         colorIndex = 0;
@@ -699,22 +708,38 @@ void MainWindow::on_pushButton_menu_clicked()
 }
 
 
-
-
-
 void MainWindow::on_pushButton_recent_clicked()
 {
+    ui->sidebarMenu->hide();
+    recentcal *recentWindow = new recentcal();
+    recentWindow->setCalculatorWindow(this);
+    recentWindow->setFixedSize(291, 666);
+    recentWindow->setWindowFlags(Qt::Window | Qt::Tool | Qt::FramelessWindowHint);
 
+    // Get the actual screen position
+    QPoint screenPos = this->mapToGlobal(QPoint(0, 0));
+    recentWindow->move(screenPos);
+
+    recentWindow->show();
+    recentWindow->raise();  // Bring to front
+    recentWindow->activateWindow();
 }
 
 
-void MainWindow::on_pushButton_favorite_clicked()
+void MainWindow::on_pushButton_extra_clicked()
 {
-    favoritedcalculation *recentWindow = new favoritedcalculation(this);
-    recentWindow->setFixedSize(290, 631);
-    recentWindow->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
-    recentWindow->move(this->x(), this->y());
-    recentWindow->show();
+    ui->sidebarMenu->hide();
+    extra *extraWindow = new extra();
+    extraWindow->setCalculatorWindow(this);
+    extraWindow->setFixedSize(291, 666);
+    extraWindow->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint);
+    // Get the actual screen position
+    QPoint screenPos = this->mapToGlobal(QPoint(0, 0));
+    extraWindow->move(screenPos);
+    extraWindow->show();
+    extraWindow->raise();  // Bring to front
+    extraWindow->activateWindow();
+
 }
 
 
@@ -734,3 +759,132 @@ void MainWindow::on_pushButton_calculator_clicked()
     ui->sidebarMenu->setVisible(!ui->sidebarMenu->isVisible());
 }
 
+
+void MainWindow::addToRecentSearches(QString calculation)
+{
+    if(!calculation.isEmpty()) {
+        MainWindow::recentSearches.prepend(calculation);
+        /* Keeps only the last 10*/
+        if(MainWindow::recentSearches.size() > 10) {
+            MainWindow::recentSearches.removeFirst();
+        }
+    }
+}
+
+
+void MainWindow::setExpressionFromString(QString expr)
+{
+
+    if(expr.contains(" = ")) {
+        expr = expr.split(" = ")[0];
+    }
+    expr = expr.remove(" ");
+    expression.clear();
+
+    int i = 0;
+    while(i < expr.length()) {
+        QChar current = expr[i];
+
+        if(current.isDigit() || current == '.') {
+            QString number;
+            while(i < expr.length() && (expr[i].isDigit() || expr[i] == '.')) {
+                number += expr[i];
+                i++;
+            }
+            Token token;
+            token.type = TokenType::Number;
+            token.value = number;
+            expression.push_back(token);
+        }
+        else if(current == '+' || current == '-' || current == "×" || current == '/') {
+            Token token;
+            token.type = TokenType::Operator;
+            token.value = current;
+            expression.push_back(token);
+            i++;
+        }
+        else if(current == '(') {
+            Token token;
+            token.type = TokenType::LeftParen;
+            token.value = "(";
+            expression.push_back(token);
+            i++;
+        }
+        else if(current == ')') {
+            Token token;
+            token.type = TokenType::RightParen;
+            token.value = ")";
+            expression.push_back(token);
+            i++;
+        }
+        else if(current.isLetter()) {
+            QString func;
+            while(i < expr.length() && expr[i].isLetter()) {
+                func += expr[i];
+                i++;
+            }
+            Token token;
+            token.type = TokenType::Function;
+            token.value = func;
+            expression.push_back(token);
+        }
+        else {
+            i++;
+        }
+    }
+    ui->lineEdit->setText(expr);
+}
+
+
+QString MainWindow::tokensToString(const QVector<Token>& tokens)
+{
+    QString result;
+    for(int i = 0; i < tokens.size(); i++) {
+        result += tokens[i].value;
+        if(i < tokens.size() - 1) {
+            result += " ";  // Add space between tokens
+        }
+    }
+    return result;
+}
+
+
+void MainWindow::addTokenToExpression(Token token)
+{
+    expression.push_back(token);
+
+    QString display = ui->lineEdit->text();
+    display += token.value;
+    ui->lineEdit->setText(display);
+}
+
+
+bool MainWindow::lastTokenIsOperator()
+{
+    if(expression.isEmpty()) {
+        return true;  // Treat empty as "can add a number"
+    }
+
+    Token lastToken = expression.last();
+    return (lastToken.type == TokenType::Operator ||
+            lastToken.type == TokenType::LeftParen);
+}
+
+
+Token MainWindow::getLastToken()
+{
+    if(expression.isEmpty()) {
+        Token empty;
+        empty.type = TokenType::Number;
+        empty.value = "";
+        return empty;
+    }
+    return expression.last();
+}
+
+void MainWindow::bringToFront()
+{
+    this->show();
+    this->raise();
+    this->activateWindow();
+}

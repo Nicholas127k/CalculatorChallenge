@@ -7,17 +7,20 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    extra.cpp \
     favoritedcalculation.cpp \
     main.cpp \
     mainwindow.cpp \
     recentcal.cpp
 
 HEADERS += \
+    extra.h \
     favoritedcalculation.h \
     mainwindow.h \
     recentcal.h
 
 FORMS += \
+    extra.ui \
     favoritedcalculation.ui \
     mainwindow.ui \
     recentcal.ui
