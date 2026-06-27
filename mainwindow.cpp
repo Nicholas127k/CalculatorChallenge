@@ -29,8 +29,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_answer_clicked()
 {
-    if (expression.isEmpty() || (expression.back().type == TokenType::Operator))
+    if (expression.isEmpty() ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")) {
         return;
+    }
     QVector<Token> tokens = expression;
     QString originalExpression = tokensToString(expression);
     bool parenthesisLoop = true;
@@ -54,6 +55,9 @@ void MainWindow::on_pushButton_answer_clicked()
                     QString funcName = tokens[funcIndex].value;
                     if (funcName == "log") {
                         answer = log10(answer);
+                    }
+                    else if(funcName == "sqrt"){
+                        answer = sqrt(answer);
                     }
                     else if(funcName == "c"){
                         answer = answer * 299792458;
@@ -118,7 +122,7 @@ void MainWindow::on_pushButton_num0_clicked()
 {
     QString digit = "0";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -138,7 +142,7 @@ void MainWindow::on_pushButton_num1_clicked()
 {
     QString digit = "1";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -158,7 +162,7 @@ void MainWindow::on_pushButton_num2_clicked()
 {
     QString digit = "2";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -178,7 +182,7 @@ void MainWindow::on_pushButton_num3_clicked()
 {
     QString digit = "3";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -198,7 +202,7 @@ void MainWindow::on_pushButton_num4_clicked()
 {
     QString digit = "4";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -218,7 +222,7 @@ void MainWindow::on_pushButton_num5_clicked()
 {
     QString digit = "5";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -238,7 +242,7 @@ void MainWindow::on_pushButton_num6_clicked()
 {
     QString digit = "6";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -258,7 +262,7 @@ void MainWindow::on_pushButton_num7_clicked()
 {
     QString digit = "7";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -278,7 +282,7 @@ void MainWindow::on_pushButton_num8_clicked()
 {
     QString digit = "8";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -298,7 +302,7 @@ void MainWindow::on_pushButton_num9_clicked()
 {
     QString digit = "9";
     if (expression.isEmpty()
-        || expression.back().type == TokenType::Operator
+        ||  (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         || expression.back().type == TokenType::LeftParen
         || expression.back().type == TokenType::RightParen)
     {
@@ -318,7 +322,7 @@ void MainWindow::on_pushButton_multiplaction_clicked()
 {
     if (expression.isEmpty())
         return;
-    if (expression.back().type == TokenType::Operator)
+    if (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         return;
     expression.push_back({TokenType::Operator, "×"});
     ui->lineEdit->setText(ui->lineEdit->text() + "×");
@@ -329,7 +333,7 @@ void MainWindow::on_pushButton_addition_clicked()
 {
     if (expression.isEmpty())
         return;
-    if (expression.back().type == TokenType::Operator)
+    if (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         return;
     expression.push_back({TokenType::Operator, "+"});
     ui->lineEdit->setText(ui->lineEdit->text() + "+");
@@ -340,7 +344,7 @@ void MainWindow::on_pushButton_subtraction_clicked()
 {
     if (expression.isEmpty())
         return;
-    if (expression.back().type == TokenType::Operator)
+    if (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         return;
     expression.push_back({TokenType::Operator, "-"});
     ui->lineEdit->setText(ui->lineEdit->text() + "-");
@@ -351,7 +355,7 @@ void MainWindow::on_pushButton_division_clicked()
 {
     if (expression.isEmpty())
         return;
-    if (expression.back().type == TokenType::Operator)
+    if (expression.back().type == TokenType::Operator && expression.back().value != "^2")
         return;
     expression.push_back({TokenType::Operator, "/"});
     ui->lineEdit->setText(ui->lineEdit->text() + "/");
@@ -359,49 +363,36 @@ void MainWindow::on_pushButton_division_clicked()
 
 void MainWindow::on_pushButton_sqr_clicked()
 {
-    if(containsOperator() == false){
-        if (expression.isEmpty())
-            return;
-
-        QString numberString;
-
-        for(const Token& token : expression)
-        {
-            numberString += token.value;
-        }
-
-        double value = numberString.toDouble();
-
-        value = std::sqrt(value);
-
-        expression.clear();
-        expression.push_back({TokenType::Number, QString::number(value)});
-
-        ui->lineEdit->setText(QString::number(value));
+    if (!expression.isEmpty() && (expression.back().type == TokenType::Number || expression.back().type == TokenType::RightParen)){
+        expression.push_back({TokenType::Operator, "×"});
+        ui->lineEdit->setText(ui->lineEdit->text() + "×");
     }
+
+    Token token;
+    token.type = TokenType::Function;
+    token.value = "sqrt";
+    expression.push_back(token);
+
+    Token newToken;
+    newToken.type = TokenType::LeftParen;
+    newToken.value = "(";
+    expression.push_back(newToken);
+    ui->lineEdit->setText(ui->lineEdit->text() + "sqrt(");
 
 }
 
 
 void MainWindow::on_pushButton_power_2_clicked()
 {
-    if(containsOperator() == false){
-        if (expression.isEmpty())
-            return;
-
-        QString inputString;
-
-        for(const Token& token : expression){
-            inputString += token.value;
-        }
-
-        double value = inputString.toDouble();
-        value = value * value;
-        expression.clear();
-        expression.push_back({TokenType::Number, QString::number(value)});
-        ui->lineEdit->setText(QString::number(value));
-
+    if (expression.isEmpty() || expression.back().type == TokenType::Operator || expression.back().type == TokenType::LeftParen){
+        return;
     }
+
+    Token token;
+    token.type = TokenType::Operator;
+    token.value = "^2";
+    expression.push_back(token);
+    ui->lineEdit->setText(ui->lineEdit->text() + "^2");
 }
 
 
@@ -539,14 +530,19 @@ void MainWindow::on_pushButton_parenthesis_clicked()
         return;
     }
 
-    if(expression.back().type == TokenType::Operator || expression.back().type == TokenType::LeftParen){
+    bool isStandardOperator = (expression.back().type == TokenType::Operator && expression.back().value != "^2");
+
+    if (isStandardOperator || expression.back().type == TokenType::LeftParen) {
         Token newToken;
         newToken.type = TokenType::LeftParen;
         newToken.value = "(";
         expression.push_back(newToken);
         ui->lineEdit->setText(ui->lineEdit->text() + newToken.value);
     }
-    else if(expression.back().type == TokenType::Number || expression.back().type == TokenType::RightParen){
+    else if (expression.back().type == TokenType::Number ||
+             expression.back().type == TokenType::RightParen ||
+             expression.back().value == "^2")
+    {
         if (count > 0) {
             Token newToken;
             newToken.type = TokenType::RightParen;
@@ -554,7 +550,7 @@ void MainWindow::on_pushButton_parenthesis_clicked()
             expression.push_back(newToken);
             ui->lineEdit->setText(ui->lineEdit->text() + newToken.value);
         }
-        else{
+        else {
             expression.push_back({TokenType::Operator, "×"});
             ui->lineEdit->setText(ui->lineEdit->text() + "×");
             Token newToken;
@@ -570,7 +566,21 @@ void MainWindow::on_pushButton_parenthesis_clicked()
 double MainWindow::evaluateExpression(QVector<Token> tokens)
 {
     double answer;
+    for (int i = 0; i < tokens.size(); i++) {
+        if (tokens[i].type == TokenType::Operator && tokens[i].value == "^2") {
 
+            if (i > 0 && tokens[i-1].type == TokenType::Number) {
+
+                double base = tokens[i-1].value.toDouble();
+                double result = base * base;
+
+                tokens[i-1].value = QString::number(result);
+                tokens.remove(i);
+
+                i--;
+            }
+        }
+    }
     bool multLoop = true;
     while (multLoop){
         multLoop = false;
@@ -852,7 +862,7 @@ void MainWindow::addTokenToExpression(Token token)
 bool MainWindow::lastTokenIsOperator()
 {
     if(expression.isEmpty()) {
-        return true;  // Treat empty as "can add a number"
+        return true;
     }
 
     Token lastToken = expression.last();

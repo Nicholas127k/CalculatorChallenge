@@ -77,7 +77,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(296, 688);
+        MainWindow->resize(290, 688);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -503,7 +503,7 @@ public:
         sidebarMenu->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 296, 26));
+        menubar->setGeometry(QRect(0, 0, 290, 26));
         menuNicks_Calculator = new QMenu(menubar);
         menuNicks_Calculator->setObjectName("menuNicks_Calculator");
         MainWindow->setMenuBar(menubar);
